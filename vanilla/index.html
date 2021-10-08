@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crash Course</title>
+</head>
+<body>
+    <button id="button">Get Data</button>
+    <div id="pikachu"/>
+    <script>
+     
+          const btn = document.getElementById('button');
+          btn.addEventListener('click', function(event) {
+              event.preventDefault();
+              const pikachu = document.getElementById('pikachu');
+              const xhr = new XMLHttpRequest();
+              xhr.open('GET', 'https://pokeapi.co/api/v2/pokemon/pikachu');
+              xhr.onload = function(){
+                    if (xhr.status === 200) {
+                      const data = JSON.parse(this.responseText);
+                      pikachu.innerHTML = `<img id="pickachu-image" src="${data.sprites.front_default}"/>`;
+                    } 
+              }
+              xhr.send();
+        })
+    
+    </script>
+</body>
+</html>
